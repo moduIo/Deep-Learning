@@ -96,6 +96,13 @@ else:
                         validation_data=(x_test, y_test),
                         workers=4)
 
+# Save model and weights
+if not os.path.isdir(save_dir):
+    os.makedirs(save_dir)
+model_path = os.path.join(save_dir, model_name)
+model.save(model_path)
+print('Saved trained model at %s ' % model_path)
+
 # Score trained model
 scores = model.evaluate(x_test, y_test, verbose=2)
 print('Test loss:', scores[0])
