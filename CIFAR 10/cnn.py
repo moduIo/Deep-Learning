@@ -1,17 +1,16 @@
-#
+####
 # Convolutional nerual network for CIFAR-10 classification.
-# Skeleton code: https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py
-# Original CNN: 75% validation accuracy in 25 epochs, and 79% after 50 epochs.
-# Current CNN: .7456% validation accuracy in 10 epochs.
-#
-import cv2
+# Tutorial code: https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py
+# Baseline Model: 75% validation accuracy in 25 epochs, and 79% after 50 epochs.
+# Adam + Batch Normalization (no augmentation): 0.8039% validation accuracy in 10 epochs.
+####
+import os
 import keras
 from keras.datasets import cifar10
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
-import os
 
 #
 # Model
