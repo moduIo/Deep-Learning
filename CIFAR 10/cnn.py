@@ -1,5 +1,8 @@
 #
 # Convolutional nerual network for CIFAR-10 classification.
+# Skeleton code: https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py
+# Original CNN: 75% validation accuracy in 25 epochs, and 79% after 50 epochs.
+# Current CNN: .7456% validation accuracy in 10 epochs.
 #
 import cv2
 import keras
@@ -11,16 +14,16 @@ from keras.layers.normalization import BatchNormalization
 import os
 
 #
-# Main
+# Model
 #
 save_dir = 'models'
-model_name = 'test'
+model_name = 'CNN'
 num_classes = 10
-epochs = 100
+epochs = 10
 data_augmentation = False
 batch_size = 32
 
-# Split data
+# Load and split data
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
 # Preprocess data
@@ -37,24 +40,36 @@ y_test = keras.utils.to_categorical(y_test, num_classes)
 # CNN Structure
 #
 model = Sequential()
+
+# 3x3 Conv
 model.add(Conv2D(64, (3, 3), padding='same', input_shape=x_train.shape[1:]))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+
+# 3x3 Conv
 model.add(Conv2D(64, (3, 3)))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+
+# 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
+# 3x3 Conv
 model.add(Conv2D(64, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+
+# 3x3 Conv
 model.add(Conv2D(64, (3, 3)))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+
+# 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
+# FC layer
 model.add(Flatten())
 model.add(Dense(512))
 model.add(BatchNormalization())
@@ -63,11 +78,17 @@ model.add(Dropout(0.5))
 model.add(Dense(num_classes))
 model.add(Activation('softmax'))
 
+# Set optimizer
+#opt = keras.optimizers.rmsprop(lr=0.0001, decay=1e-6)
+opt = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+
 model.compile(loss = 'categorical_crossentropy',
-              optimizer = keras.optimizers.rmsprop(lr=0.0001, decay=1e-6),
+              optimizer = opt,
               metrics = ['accuracy'])
 
-# Train CNN
+#
+# Training
+#
 if not data_augmentation:
     print('Not using data augmentation.')
     model.fit(x_train, y_train,
@@ -88,8 +109,7 @@ else:
         width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
         height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
         horizontal_flip=True,  # randomly flip images
-        vertical_flip=False   # randomly flip images
-    )  
+        vertical_flip=False)   # randomly flip images
 
     # Compute quantities required for feature-wise normalization
     # (std, mean, and principal components if ZCA whitening is applied).
