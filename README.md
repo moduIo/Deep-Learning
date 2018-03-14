@@ -1,4 +1,3 @@
-# Deep-Learning-Practice
 Implementations for Deep Neural Networks on a variety of tasks.
 
 ## Word2Vec

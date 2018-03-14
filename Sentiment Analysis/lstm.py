@@ -1,9 +1,10 @@
-#
+####
 # LSTM for sentiment analysis on the IMDB dataset.
 # Tutorial code: https://github.com/keras-team/keras/blob/master/examples/imdb_lstm.py
 # Baseline Model: 0.8063% validation accuracy
-#
+####
 from __future__ import print_function
+import keras
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding, LSTM
@@ -15,7 +16,7 @@ from keras.datasets import imdb
 #
 max_features = 20000
 maxlen = 80  # cut texts after this number of words (among top max_features most common words)
-batch_size = 32
+batch_size = 64
 
 #
 # Load and process data
@@ -33,10 +34,12 @@ model = Sequential()
 model.add(Embedding(max_features, 128))
 model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
 model.add(BatchNormalization())
-model.add(Dense(1, activation='tanh'))
+model.add(Dense(1, activation='sigmoid'))
+
+opt = keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.2, amsgrad=False)
 
 model.compile(loss='binary_crossentropy',
-              optimizer='adam',
+              optimizer=opt,
               metrics=['accuracy'])
 
 #
