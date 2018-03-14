@@ -19,7 +19,7 @@ save_dir = 'models'
 model_name = 'CNN'
 num_classes = 10
 epochs = 10
-data_augmentation = False
+data_augmentation = True
 batch_size = 32
 
 # Load and split data
@@ -100,15 +100,15 @@ else:
     # This will do preprocessing and realtime data augmentation:
     datagen = ImageDataGenerator(
         featurewise_center=False,  # set input mean to 0 over the dataset
-        samplewise_center=False,  # set each sample mean to 0
+        samplewise_center=True,  # set each sample mean to 0
         featurewise_std_normalization=False,  # divide inputs by std of the dataset
-        samplewise_std_normalization=False,  # divide each input by its std
+        samplewise_std_normalization=True,  # divide each input by its std
         zca_whitening=False,  # apply ZCA whitening
-        rotation_range=0,  # randomly rotate images in the range (degrees, 0 to 180)
+        rotation_range=20,  # randomly rotate images in the range (degrees, 0 to 180)
         width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
         height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
         horizontal_flip=True,  # randomly flip images
-        vertical_flip=False)   # randomly flip images
+        vertical_flip=True)   # randomly flip images
 
     # Compute quantities required for feature-wise normalization
     # (std, mean, and principal components if ZCA whitening is applied).
