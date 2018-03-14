@@ -1,5 +1,3 @@
-Implementations for Deep Neural Networks on a variety of tasks.
-
 ## Word2Vec
 Implements Word2Vec embedding layer using the IMDB sentiment analysis dataset and gensim.
 
