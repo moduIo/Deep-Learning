@@ -3,7 +3,8 @@
 # Tutorial code: https://github.com/keras-team/keras/blob/master/examples/imdb_lstm.py
 # Baseline Model: 0.8063% validation accuracy
 # Best Model:
-#     Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.2, amsgrad=False): 0.8440% validation accuracy
+#     Adam(lr=0.01, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.2, amsgrad=False)
+#     => 0.8440% validation accuracy
 ####
 from __future__ import print_function
 import keras
@@ -35,10 +36,10 @@ print('Build model...')
 model = Sequential()
 model.add(Embedding(max_features, 128))
 model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
-#model.add(BatchNormalization())
 model.add(Dense(1, activation='sigmoid'))
 
-opt = keras.optimizers.Adam(lr=0.0125, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+#opt = keras.optimizers.Adam(lr=0.0125, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+opt = keras.optimizers.Nadam(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.004)
 
 model.compile(loss='binary_crossentropy',
               optimizer=opt,
