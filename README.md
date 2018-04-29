@@ -1,11 +1,10 @@
 ## Word2Vec
-Implements Word2Vec embedding layer using the IMDB sentiment analysis dataset and gensim.
+Implementation Word2Vec embedding layer using the IMDB sentiment analysis dataset and gensim.
 
 ## Sentiment Analysis
-Implements an LSTM in Keras for sentiment analysis on the IMDB sentiment analysis dataset.
-My model improves the baseline accuracy by 0.0377% to 0.8440%.
+Implementation of an LSTM in Keras for sentiment analysis on the IMDB sentiment analysis dataset.
 
-Implements Bidirectional LSTM and improves accuracy from 0.8339% to 0.8457%.
+Implementation of Bidirectional LSTM which improved accuracy from 0.8339 baseline to 0.87432.
 
 ## CIFAR-10
 Implements a CNN in Keras for image classification on the CIFAR-10 dataset (https://www.cs.toronto.edu/~kriz/cifar.html).
