@@ -2,7 +2,7 @@
 # Convolutional nerual network for CIFAR-10 classification.
 # Tutorial code: https://github.com/keras-team/keras/blob/master/examples/cifar10_cnn.py
 # Baseline Model: 75% validation accuracy in 25 epochs, and 79% after 50 epochs.
-# Best Model: 80.86% validation accuracy in 10 epochs, and 86.53% after 20 epochs.
+# Best Model: 83.87% validation accuracy in 10 epochs, and 88.17% after 25 epochs.
 ####
 import os
 import keras
@@ -44,11 +44,13 @@ model = Sequential()
 model.add(Conv2D(128, (3, 3), padding='same', input_shape=x_train.shape[1:]))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 # 3x3 Conv
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 # 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -57,11 +59,13 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 # 3x3 Conv
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 # 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -70,11 +74,13 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 # 3x3 Conv
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 # 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
