@@ -44,13 +44,11 @@ model = Sequential()
 model.add(Conv2D(128, (3, 3), padding='same', input_shape=x_train.shape[1:]))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.25))
 
 # 3x3 Conv
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.25))
 
 # 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -59,13 +57,11 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.25))
 
 # 3x3 Conv
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.25))
 
 # 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -74,23 +70,35 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.25))
 
 # 3x3 Conv
 model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(0.25))
 
 # 2x2 Pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-# FC layer
+# 3x3 Conv
+model.add(Conv2D(128, (3, 3), padding='same'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+
+# 2x2 Pooling
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
+# FC
 model.add(Flatten())
 model.add(Dense(512))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
+
+model.add(Dense(256))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+
 model.add(Dense(num_classes))
 model.add(Activation('softmax'))
 

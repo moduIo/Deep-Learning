@@ -8,10 +8,10 @@ Implementation of Bidirectional LSTM which improved accuracy from 0.8339 baselin
 
 ## CIFAR-10
 Implements a CNN in Keras for image classification on the CIFAR-10 dataset (https://www.cs.toronto.edu/~kriz/cifar.html).
-My model improves the baseline accuracy by 7.53% in 30 fewer epochs and achieves 86.53% accuracy after 20 epochs.
+My model: 83.87% validation accuracy in 10 epochs, and 88.17% after 25 epochs.
 
 ## Reinforcement Learning
 Implementation of Q-learning using the OpenAI Gym environment.
 
 ## Transfer Learning
-Use Inception model as a pretrained feature extractor.
+Uses Inception model as a pretrained feature extractor on CIFAR-10.
