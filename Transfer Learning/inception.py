@@ -1,6 +1,6 @@
 ####
 # Transfer learning using Inception pretrained model for CIFAR-10 classification.
-# Best Model: 83.87% validation accuracy in 10 epochs, and 88.17% after 25 epochs.
+# Best Model: 71.23% validation accuracy in 10 epochs.
 ####
 import cv2
 import numpy as np
@@ -51,7 +51,7 @@ x = base_model.output
 x = GlobalAveragePooling2D()(x)
 
 # FC
-x = Dense(256, activation='relu')(x)
+x = Dense(64, activation='relu')(x)
 predictions = Dense(num_classes, activation='softmax')(x)
 
 model = Model(inputs=base_model.input, outputs=predictions)
@@ -61,7 +61,7 @@ for layer in base_model.layers:
     layer.trainable = False
 
 # Compile the model
-model.compile(optimizer='adadelta', 
+model.compile(optimizer='adam', 
 	          loss='categorical_crossentropy',
 	          metrics = ['accuracy'])
 

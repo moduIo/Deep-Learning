@@ -13,5 +13,7 @@ My model: 83.87% validation accuracy in 10 epochs, and 88.17% after 25 epochs.
 ## Reinforcement Learning
 Implementation of Q-learning using the OpenAI Gym environment.
 
+Implementation of Deep Q Network for Ms Pacman using OpenAI Gym and Keras.
+
 ## Transfer Learning
 Uses Inception model as a pretrained feature extractor on CIFAR-10.
