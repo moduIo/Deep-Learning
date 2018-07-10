@@ -5,6 +5,7 @@
 import cv2
 import numpy as np
 import keras
+from keras import optimizers
 from keras.applications.inception_v3 import InceptionV3
 from keras.datasets import cifar10
 from keras.preprocessing import image
@@ -60,8 +61,10 @@ model = Model(inputs=base_model.input, outputs=predictions)
 for layer in base_model.layers:
     layer.trainable = False
 
+opt = optimizers.Adam(lr=0.0001)
+
 # Compile the model
-model.compile(optimizer='adam', 
+model.compile(optimizer=opt, 
 	          loss='categorical_crossentropy',
 	          metrics = ['accuracy'])
 
