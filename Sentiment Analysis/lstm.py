@@ -25,9 +25,9 @@ batch_size = 64
 # Load and process data
 #
 print('Loading data...')
-(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features)
-x_train = sequence.pad_sequences(x_train, maxlen=maxlen)
-x_test = sequence.pad_sequences(x_test, maxlen=maxlen)
+#(x_train, y_train), (x_test, y_test) = imdb.load_data(num_words=max_features)
+#x_train = sequence.pad_sequences(x_train, maxlen=maxlen)
+#x_test = sequence.pad_sequences(x_test, maxlen=maxlen)
 
 #
 # LSTM Structure
@@ -44,6 +44,8 @@ opt = keras.optimizers.Adam(lr=0.005, beta_1=0.9, beta_2=0.999, epsilon=None, de
 model.compile(loss='binary_crossentropy',
               optimizer=opt,
               metrics=['accuracy'])
+
+print(model.summary())
 
 #
 # Training
